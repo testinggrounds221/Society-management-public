@@ -1,0 +1,23 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Receipts</title>
+  </head>
+  <body>
+    {% extends "base.html" %} {% load static %} {% block content %}
+    <div class="cover-container d-flex w-100 p-3 mx-auto flex-column">
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading text-center text-success display-3">
+          Payment Successful
+        </h1>
+
+        <p class="text-center display-4">
+          Your payment for the month {{inv.month}} was carried out succesfully!!
+        </p>
+      </main>
+    </div>
+
+    {% endblock %}
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Receipts</title>
+  </head>
+  <body>
+    {% extends "base.html" %} {% load static %} {% block content %}
+    <h1 class="text-center">My Receipts</h1>
+    {% if not receipts %}
+    <p class="text-center display-4">You have not yet paid any invoices !!!</p>
+    {% endif %}
+    <div class="row">
+      {% for receipt in receipts %}
+      <div class="col-md-4">
+        <div class="card mb-2 bg-success text-white text-center">
+          <!-- <img class="card-img-top" src="{% static project.image %}" /> -->
+          <div class="card-body">
+            <h5 class="card-title">{{ receipt }}</h5>
+            <p class="card-text">
+              Paid <span>&#8377;</span> {{ receipt.total_fee }} On
+              {{ receipt.paid_time }}
+            </p>
+            <a href="receipt/{{ receipt.id }}/" class="btn btn-dark mt-3">
+              View Reciept
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% endblock %}
+  </body>
+</html>

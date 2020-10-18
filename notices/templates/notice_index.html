@@ -1,0 +1,39 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notices</title>
+  </head>
+  <body>
+    {% extends "base.html" %} {% load static %} {% block content %}
+    <h1 class="text-center">Notices</h1>
+    <div class="row">
+      {% for notice in notices %}
+      <div class="col-md-4">
+        <div class="card mb-2 text-white bg-{{notice.category}}">
+          <!-- <img class="card-img-top" src="{% static project.image %}" /> -->
+          <div class="card-body">
+            <h5 class="card-title">{{ notice.title }}</h5>
+            <p class="card-text">{{ notice.shrt_text }}</p>
+            <div class="progress">
+              <div
+                class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                role="progressbar"
+                aria-valuenow="{{notice.completion_status}}"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                style="width: {{notice.completion_status}}%"
+              ></div>
+            </div>
+            <a href="/notices/{{ notice.id }}/" class="btn btn-dark mt-3">
+              Read More
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% endblock %}
+  </body>
+</html>

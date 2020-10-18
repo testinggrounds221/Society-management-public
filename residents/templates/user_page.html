@@ -1,0 +1,58 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+  </head>
+  <body>
+    {% extends 'base.html' %} {% block content %}
+    <div class="card-body pt-0 pt-md-4">
+      <div class="row">
+        <div class="col"></div>
+      </div>
+      <div class="text-center">
+        <h3>
+          {{ resident.name }}<span class="font-weight-light"
+            >, {{resident.flat_no}}</span
+          >
+        </h3>
+        <div class="h5 font-weight-300">{{resident.email_id}}</div>
+        <div class="h5 mt-4">{{resident.work}}</div>
+        <div>{{resident.mobile_no}}</div>
+        <hr class="my-4" />
+        <p>{{resident.permanent_address}}</p>
+        <a href="pay/receipts" class="btn btn-success w-50 my-3">My Recipts</a>
+      </div>
+    </div>
+    <div class="container">
+      <h3 class="display-6 text-center mb-3">Pending Invoices</h3>
+      {% if not unpaid_invoice_objects %}
+      <h1 class="cover-heading text-center text-success display-3">
+        Hurray !!!
+      </h1>
+
+      <p class="text-center display-4">You have no unpaid invoices !!!</p>
+      {% endif %}
+      <!-- Row of columns -->
+      <div class="row">
+        {% for obj in unpaid_invoice_objects %}
+        <div class="col-md-4">
+          <div class="card mb-2 text-white bg-secondary text-center">
+            <div class="card-body">
+              <h5 class="card-title">{{ obj }}</h5>
+              <p class="text-center">Due on {{ obj.due_date }}</p>
+              <p class="text-center">
+                <a class="btn btn-success" href="pay/{{obj.id}}" role="button"
+                  >Pay Now &raquo;</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% endblock %}
+  </body>
+</html>

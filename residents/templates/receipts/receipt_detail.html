@@ -1,0 +1,30 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    {% extends "base.html" %} {% load static %} {% block content %}
+    <div class="cover-container d-flex w-100 p-3 mx-auto flex-column">
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading text-center display-3 font-weight-bold">
+          Maintenance Receipt
+        </h1>
+        <p class="display-4 text-center">
+          Received with thanks from Mr./Mrs.
+          <span class="font-weight-bold">{{resident.name}}</span> from
+          <span class="font-weight-bold">{{resident.flat_no}}</span> a sum of
+          Rs.<span class="font-weight-bold">{{receipt.total_fee}}</span>
+          only towards Maintenance Charges for the month
+          <span class="font-weight-bold">{{receipt.month}}</span> through online
+          banking on <span class="font-weight-bold">{{receipt.paid_time}}</span>
+        </p>
+        <h1 class="cover-heading text-center text-success display-3">
+          Thank You !!!
+        </h1>
+      </main>
+    </div>
+    {% endblock %}
+  </body>
+</html>

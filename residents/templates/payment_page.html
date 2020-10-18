@@ -1,0 +1,69 @@
+<!--users/templates/users/dashboard.html-->
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    {% extends 'base.html' %} {% block content %}
+
+    <h4 class="text-center mb-3">Your invoice</h4>
+    <div class="d-flex justify-content-center align-items-center">
+      <ul class="list-group mb-3 w-50">
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">Lift Charges</h6>
+            <small class="text-muted">Brief description</small>
+          </div>
+          <span class="text-muted"><span>&#8377;</span> {{lift}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">Garden Maintenance</h6>
+            <small class="text-muted">Brief description</small>
+          </div>
+          <span class="text-muted"><span>&#8377;</span> {{garden}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">Cleaning Charges</h6>
+            <small class="text-muted">Brief description</small>
+          </div>
+          <span class="text-muted"><span>&#8377;</span> {{clean}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">Water Charges</h6>
+            <small class="text-muted">Brief description</small>
+          </div>
+          <span class="text-muted"><span>&#8377;</span> {{water}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">Late Fee Charges</h6>
+            {% if late_by_days > 0 %}
+            <small class="text-muted"
+              >You are late by {{late_by_days}} days</small
+            >
+            {% endif %}
+          </div>
+          <span class="text-muted"><span>&#8377;</span> {{late_fee}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <span>Grand Total </span>
+          <strong><span>&#8377;</span> {{grand_total}}</strong>
+        </li>
+      </ul>
+    </div>
+    <div class="d-flex justify-content-center align-items-center">
+      <a
+        href="/residents/pay/generate/{{invoice_id}}"
+        class="btn btn-success my-3 w-25"
+        >Pay Now</a
+      >
+    </div>
+    {% endblock %}
+  </body>
+</html>
