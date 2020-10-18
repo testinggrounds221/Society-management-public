@@ -5,12 +5,9 @@ from django.utils import timezone
 import datetime
 
 from residents.mail import send_email
-import environ
+from project.settings import MAIL_SERVICE
 
-env = environ.Env()
-environ.Env.read_env()
 
-mail_service_enabled = (env('MAILSERVICE') == 'TRUE')
 
 def get_resident(request):
 	"""
@@ -151,6 +148,7 @@ def payment_success(request,invoice_id):
 	context['inv'] = get_invoice(invoice_id)
 	rec = get_receipt(request,invoice_id)
 	res = get_resident(request)
+	mail_service_enabled = (MAIL_SERVICE == 'TRUE')
 	if mail_service_enabled:
 		send_email(rec,res)
 	return render(request,'receipts/pay_success.html',context)

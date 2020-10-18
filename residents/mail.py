@@ -1,17 +1,15 @@
 import sendgrid
 import os
 from sendgrid.helpers.mail import *
-import environ
+from project.settings import FROM_MAIL
 
-env = environ.Env()
-environ.Env.read_env()
 
 def send_email(receipt,resident):
 	
 	content_str = f'Thank you Mr./Mrs. {resident.name} from {resident.flat_no} for your payment sum of Rs. {receipt.total_fee} only towards Maintenance Charges for the month {receipt.month} through online banking.'
 		
 	sg = sendgrid.SendGridAPIClient(api_key=env('SENDGRID_API_KEY'))	
-	from_email = Email(env('FROMMAIL'))
+	from_email = Email(FROM_MAIL)
 	to_email = To(resident.email_id)
 	subject = f'Society Management Receipt for the month {receipt.month}'
 	
